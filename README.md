@@ -22,9 +22,6 @@
   - [⭐️ Show your support ](#️-show-your-support-)
   - [❓ FAQ ](#-faq-)
   - [📝 License ](#-license-)
-  - [🤝 Contributing](#-contributing)
-  - [Show your support](#show-your-support)
-  - [Acknowledgments](#acknowledgments)
   - [📝 License](#-license)
 
 # 📖 [To-Do-List] <a name="To-Do-List">To-Do-List</a>
@@ -146,22 +143,6 @@ I would like to thank God Almighty and Microverse for the opportunity and motiva
 - GitHub: [@EnixWord](https://github.com/EnixWord)
 - Twitter: [@StevMicroverse](https://twitter.com/StevMicroverse)
 - LinkedIn: [Stephen Okhaishie](https://www.linkedin.com/in/stephen-okhaishie-3baa19255/)
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-
-Feel free to check the [issues page](../../issues/).
-
-## Show your support
-
-Give a ⭐️ if you like this project!
-
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
 
 ## 📝 License
 
