@@ -89,16 +89,19 @@ form > * {
   cursor: pointer;
 }
 
-.todo-list li::after {
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 30px;
+.task-entry {
+  width: 90%;
+}
+
+.delete-btn {
+  width: 20px;
+  height: 20px;
+  border: none;
   background-color: white;
-  background-image: url(https://www.svgrepo.com/show/493701/menu-vertical-menu-dots-more.svg);
-  background-size: contain;
+  background-image: url(./images/delete-button.svg);
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: right;
   position: absolute;
   right: 10px;
 }
