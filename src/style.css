@@ -79,14 +79,11 @@ form > * {
   border-bottom: 1px solid silver;
 }
 
-.todo-list li::before {
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 10px;
+.checkbox {
+  width: 15px;
+  height: 15px;
   border: 1px solid silver;
   margin-right: 10px;
-  cursor: pointer;
 }
 
 .task-entry {

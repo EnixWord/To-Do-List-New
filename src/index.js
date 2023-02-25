@@ -1,49 +1,37 @@
 import './style.css';
+import todoData from './mod.js';
+import isCompleted from './setStates.js';
 
-class TodoData {
-  constructor() {
-    if (window.localStorage.getItem('tasksData') !== undefined) {
-      this.tasksData = JSON.parse(window.localStorage.getItem('tasksData'));
-    } else {
-      this.tasksData = [];
-    }
-  }
-
-  addTaskEntry(task) {
-    this.tasksData.push(task);
-    this.updateLocalStorage();
-  }
-
-  deleteTaskEntry(index) {
-    this.tasksData = this.tasksData.filter((task) => task.index !== index);
-    this.updateLocalStorage();
-  }
-
-  updateLocalStorage() {
-    localStorage.setItem('tasksData', JSON.stringify(this.tasksData));
-    this.tasksData = JSON.parse(window.localStorage.getItem('tasksData'));
-  }
-}
-
-const todoData = new TodoData();
 const todoListEl = document.getElementById('todo-list');
 const formEl = document.getElementById('add-todo-form');
 const inputEl = document.getElementById('add-task');
 const deleteBtnEls = document.getElementsByClassName('delete-btn');
+const deleteCompletedBtnEl = document.getElementById('clear-completed-btn');
 
 const renderTasks = () => {
   todoListEl.innerHTML = '';
   todoData.tasksData.forEach((task, forLoopIndex) => {
     const listEl = document.createElement('li');
     listEl.classList.add('list-item');
+    const checkboxEl = document.createElement('input');
+    checkboxEl.type = 'checkbox';
+    checkboxEl.classList.add('checkbox');
     const listDescriptionEl = document.createElement('span');
     listDescriptionEl.classList.add('task-entry');
     listDescriptionEl.innerText = task.description;
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('delete-btn');
     task.index = forLoopIndex + 1;
-    listEl.append(listDescriptionEl, deleteBtn);
+    listEl.append(checkboxEl, listDescriptionEl, deleteBtn);
     todoListEl.appendChild(listEl);
+
+    if (todoData.tasksData[forLoopIndex].completed) {
+      listDescriptionEl.style.textDecoration = 'line-through';
+      checkboxEl.checked = true;
+    } else {
+      listDescriptionEl.style.textDecoration = 'none';
+      checkboxEl.checked = false;
+    }
   });
 
   const deleteBtns = Array.from(deleteBtnEls);
@@ -58,6 +46,7 @@ const renderTasks = () => {
       renderTasks();
     });
   });
+  isCompleted();
 };
 
 renderTasks();
@@ -67,8 +56,15 @@ formEl.addEventListener('submit', (e) => {
   const task = {
     description: inputEl.value,
     completed: false,
-    index: todoData.tasksData.length,
+    index: todoData.tasksData.length + 1,
   };
   todoData.addTaskEntry(task);
+  renderTasks();
+  inputEl.value = '';
+});
+
+deleteCompletedBtnEl.addEventListener('click', () => {
+  todoData.tasksData = todoData.tasksData.filter((task) => !task.completed);
+  todoData.updateLocalStorage();
   renderTasks();
 });
