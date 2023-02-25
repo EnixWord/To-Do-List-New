@@ -1,33 +1,77 @@
 import './style.css';
-
-const tasksData = [
-  {
-    description: 'task 1',
-    completed: false,
-    index: 0,
-  },
-  {
-    description: 'task 2',
-    completed: false,
-    index: 0,
-  },
-  {
-    description: 'task 3',
-    completed: false,
-    index: 0,
-  },
-];
+import todoData from './mod.js';
+import isCompleted from './setStates.js';
 
 const todoListEl = document.getElementById('todo-list');
+const formEl = document.getElementById('add-todo-form');
+const inputEl = document.getElementById('add-task');
+const deleteBtnEls = document.getElementsByClassName('delete-btn');
+const deleteCompletedBtnEl = document.getElementById('clear-completed-btn');
 
 const renderTasks = () => {
-  tasksData.forEach((task, forLoopIndex) => {
+  todoListEl.innerHTML = '';
+  todoData.tasksData.forEach((task, forLoopIndex) => {
     const listEl = document.createElement('li');
     listEl.classList.add('list-item');
-    listEl.innerText = task.description;
-    task.index = forLoopIndex;
+    listEl.dataset.index = task.index;
+    const checkboxEl = document.createElement('input');
+    checkboxEl.type = 'checkbox';
+    checkboxEl.classList.add('checkbox');
+    const listDescriptionEl = document.createElement('input');
+    listDescriptionEl.classList.add('task-entry');
+    listDescriptionEl.value = task.description;
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('delete-btn');
+    task.index = forLoopIndex + 1;
+    listEl.append(checkboxEl, listDescriptionEl, deleteBtn);
     todoListEl.appendChild(listEl);
+
+    if (todoData.tasksData[forLoopIndex].completed) {
+      listDescriptionEl.style.textDecoration = 'line-through';
+      checkboxEl.checked = true;
+    } else {
+      listDescriptionEl.style.textDecoration = 'none';
+      checkboxEl.checked = false;
+    }
+
+    listDescriptionEl.addEventListener('change', (e) => {
+      task.description = e.target.value;
+      todoData.addTaskEntry();
+    });
   });
+
+  const deleteBtns = Array.from(deleteBtnEls);
+  deleteBtns.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      const index = i + 1;
+      todoData.deleteTaskEntry(index);
+      todoData.tasksData.forEach((task, i) => {
+        task.index = i + 1;
+      });
+      todoData.updateLocalStorage();
+      renderTasks();
+    });
+  });
+  isCompleted();
 };
 
-renderTasks(tasksData);
+renderTasks();
+
+formEl.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const task = {
+    description: inputEl.value,
+    completed: false,
+    index: todoData.tasksData.length + 1,
+  };
+  todoData.addTaskEntry(task);
+  renderTasks();
+  inputEl.value = '';
+});
+
+// clear all completed tasks button
+deleteCompletedBtnEl.addEventListener('click', () => {
+  todoData.tasksData = todoData.tasksData.filter((task) => !task.completed);
+  todoData.updateLocalStorage();
+  renderTasks();
+});
