@@ -13,12 +13,13 @@ const renderTasks = () => {
   todoData.tasksData.forEach((task, forLoopIndex) => {
     const listEl = document.createElement('li');
     listEl.classList.add('list-item');
+    listEl.dataset.index = task.index;
     const checkboxEl = document.createElement('input');
     checkboxEl.type = 'checkbox';
     checkboxEl.classList.add('checkbox');
-    const listDescriptionEl = document.createElement('span');
+    const listDescriptionEl = document.createElement('input');
     listDescriptionEl.classList.add('task-entry');
-    listDescriptionEl.innerText = task.description;
+    listDescriptionEl.value = task.description;
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('delete-btn');
     task.index = forLoopIndex + 1;
@@ -32,6 +33,11 @@ const renderTasks = () => {
       listDescriptionEl.style.textDecoration = 'none';
       checkboxEl.checked = false;
     }
+
+    listDescriptionEl.addEventListener('change', (e) => {
+      task.description = e.target.value;
+      todoData.addTaskEntry();
+    });
   });
 
   const deleteBtns = Array.from(deleteBtnEls);
@@ -63,6 +69,7 @@ formEl.addEventListener('submit', (e) => {
   inputEl.value = '';
 });
 
+// clear all completed tasks button
 deleteCompletedBtnEl.addEventListener('click', () => {
   todoData.tasksData = todoData.tasksData.filter((task) => !task.completed);
   todoData.updateLocalStorage();
