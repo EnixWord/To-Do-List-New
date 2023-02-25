@@ -1,4 +1,111 @@
-.hello {
-    color: red;
-  }
-  
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  border: none;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+main {
+  box-shadow: 0 0 10px 5px silver;
+  width: 80%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form > * {
+  border-bottom: 1px solid silver;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-header-wrap h1 {
+  font-size: 2rem;
+  padding: 20px 10px;
+}
+
+.reset-btn {
+  width: 20px;
+  height: 20px;
+  border: none;
+  margin-right: 10px;
+  background-image: url(./images/sync.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.add-task-wrap input {
+  width: 90%;
+  padding: 10px;
+  outline: none;
+}
+
+.enter-btn {
+  width: 20px;
+  height: 20px;
+  border: none;
+  margin-right: 10px;
+  background-image: url(./images/arrow-turn-down-left.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.todo-list {
+  list-style: none;
+}
+
+.todo-list li {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid silver;
+}
+
+.todo-list li::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid silver;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.todo-list li::after {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 30px;
+  background-color: white;
+  background-image: url(https://www.svgrepo.com/show/493701/menu-vertical-menu-dots-more.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  right: 10px;
+}
+
+.clear-completed-btn {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: none;
+}
