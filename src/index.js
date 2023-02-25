@@ -63,6 +63,8 @@ formEl.addEventListener('submit', (e) => {
   inputEl.value = '';
 });
 
+// clear all completed task
+
 deleteCompletedBtnEl.addEventListener('click', () => {
   todoData.tasksData = todoData.tasksData.filter((task) => !task.completed);
   todoData.updateLocalStorage();
