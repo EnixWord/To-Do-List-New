@@ -1,111 +1,100 @@
 * {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  height: 100vh;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
 
-input {
-  border: none;
+section {
+  text-align: center;
+  width: 50%;
+  margin: 30px 25%;
+  padding: 20px 0;
+  color: rgb(16, 15, 15);
+  background-color: rgb(245, 245, 245);
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-}
-
-main {
-  box-shadow: 0 0 10px 5px silver;
-  width: 80%;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-form > * {
-  border-bottom: 1px solid silver;
+.first {
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 1rem;
+  font-size: x-small;
 }
 
-.form-header-wrap h1 {
-  font-size: 2rem;
-  padding: 20px 10px;
+.first h1 {
+  color: #38036a;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 25px;
 }
 
-.reset-btn {
-  width: 20px;
-  height: 20px;
+.first span {
+  font-size: medium;
+  background-color: #c1c3e9;
+}
+
+button {
+  background: #c1c3e9;
   border: none;
-  margin-right: 10px;
-  background-image: url(./images/sync.svg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
-.add-task-wrap input {
-  width: 90%;
-  padding: 10px;
-  outline: none;
-}
-
-.enter-btn {
-  width: 20px;
-  height: 20px;
-  border: none;
-  margin-right: 10px;
-  background-image: url(./images/arrow-turn-down-left.svg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.todo-list {
-  list-style: none;
-}
-
-.todo-list li {
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid silver;
-}
-
-.todo-list li::before {
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border: 1px solid silver;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-.todo-list li::after {
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 30px;
-  background-color: white;
-  background-image: url(https://www.svgrepo.com/show/493701/menu-vertical-menu-dots-more.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  position: absolute;
-  right: 10px;
-}
-
-.clear-completed-btn {
+.clear-away {
   width: 100%;
-  padding: 10px;
-  outline: none;
-  border: none;
+  text-align: center;
+  margin: 1rem;
+}
+
+.clear-away a {
+  color: hwb(228 5% 16%);
+  text-decoration: none;
+  font-size: large;
+}
+
+.todo {
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+  padding: 0.5rem;
+}
+
+.add-new {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+
+#todo {
+  width: 90%;
+  padding: 0.7rem;
+  font-size: large;
+  font-style: italic;
+}
+
+.text {
+  width: 85%;
+  padding: 0.3rem;
+  font-size: large;
+}
+
+.checkbox {
+  margin-right: 1rem;
+}
+
+.thicked {
+  text-decoration: line-through double;
+  color: blue;
 }
